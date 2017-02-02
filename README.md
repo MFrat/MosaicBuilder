@@ -25,6 +25,37 @@ Computer Science Institute - UFF
 
 # Usage
 
+##Constructor
+```java
+MosaicBuilder mosaicBuilder = new MosaicBuilder(tilePath, inputImagePath, tileDimension);
+```
+```tilePath``` folder containing tiles.
+
+```inputImagePath``` path of the inputImage.
+
+```tileDimen``` Dimension of the tile. (e.g 50x50, 60x60, 40x40, ...).
+
+##Listener
+```java
+public interface MosaicBuilderListener{
+        public void onMosaicFinished(BufferedImage img);
+        public void onProgressChanged(int status);
+}
+```
+
+`onMosaicFinished(BufferedImage img);` is called when final image is done.
+
+`onProgressChanged(int status);` is called when the progress changes (e.g, init -> loading inputImage to memory).
+
+##Progress Status static constants
+```java
+public static final int READING_INPUT_IMAGE_INTO_MEMORY;
+public static final int READING_TILES_INTO_MEMORY;
+public static final int SELECTING_TILES;
+public static final int BUILDING_OUTPUT_IMAGE;
+```
+
+##Example
 ```java
 String tilePath = "D:\\SomeFolder\\my_pack_50x50";
 String inputImagePath = "D:\\SomeFolder\\inputImage.jpg";
