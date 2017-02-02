@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException; 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO; 
+import javax.imageio.ImageIO;
 
 /**
  * Classs representing a input image.
@@ -26,9 +26,9 @@ public abstract class Image {
     public final int width;
     public final int height;
     
-    public final File file;
+    public File file;
     
-    protected BufferedImage img;
+    public final BufferedImage img;
     
     /**
      * Matrix representing the image.
@@ -38,7 +38,7 @@ public abstract class Image {
     public Image(String imagePath) throws IOException{
         file = new File(imagePath);
         
-        img = ImageIO.read(file);;
+        img = ImageIO.read(file);
         
         width = img.getWidth();
         height = img.getHeight();
@@ -55,12 +55,18 @@ public abstract class Image {
         img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     }
     
-    protected void buildImage(BufferedImage img){
-       for(int i = 0; i < this.width; i++){
-           for(int j = 0; j < this.height; j++){
-               pixelMatrix[i][j] = new Color(img.getRGB(j, j));
-           }
-       }
+    public Image(int width, int height){
+        this.width = width;
+        this.height = height;
+        
+        img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     }
     
+    public Color getPixelColor(int x, int y){
+        return pixelMatrix[x][y];
+    }
+    
+    public boolean equals(Image image){
+        return file.getName().equals(image.file.getName());
+    }
 }
