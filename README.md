@@ -2,11 +2,18 @@
 
 Mosaic made of square image tiles. Each pixel of the input image is replaced by a tile.
 
+Library under development!
+
+Comming soon:
+- Full multi-thread processing.
+- DeltaE color difference algorithm.
+- Better tile placement algorithm, to avoid sequence repetition.
+
 ### Packs
 
-[MegaPack.zip](https://www.google.com) (over 12.000 50x50 tiles).
+[MegaPack.zip](https://mega.nz/#!XpsWDKpa!5P96H4Wd_7unRwlrfg0izY0eXIpAVMXnWpXl56ePB3I) (over 12.000 50x50 tiles).
 
-[DayZPack.zip](https://www.google.com) (over 1.200 50x50 dayz-themed tiles).
+[DayZPack.zip](https://mega.nz/#!LxEEBbiD!wxj0u9Xo_VXU9mjj1Ut0ft89gJW-VgSfIMExCbzanCs) (over 1.200 50x50 dayz-themed tiles).
 
 ## Samples(Using MegaPack)
 
@@ -41,7 +48,7 @@ MosaicBuilder mosaicBuilder = new MosaicBuilder(tilePath, inputImagePath, tileDi
 ```tileDimen``` Dimension of the tile. (e.g 50x50, 60x60, 40x40, ...).
 
 
-##Listener
+##Listener(Callback interface)
 ```java
 public interface MosaicBuilderListener{
       public void onMosaicFinished(BufferedImage img);
@@ -103,3 +110,9 @@ mosaicBuilder.setListener(new MosaicBuilder.MosaicBuilderListener() {
 
 mosaicBuilder.build();
 ```
+
+## Developed by
+
+**Max Fratane**
+
+[Facebook](https://www.facebook.com/max.fratane)
