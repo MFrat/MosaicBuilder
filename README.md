@@ -7,7 +7,7 @@ Library under development!
 Comming soon:
 - Full multi-thread processing.
 - DeltaE color difference algorithm.
-- Better tile placement algorithm, to avoid sequence repetition.
+- Better tile placement algorithm, to avoid sequencial repetition.
 - Graphic interface implementation.
 
 ### Packs
@@ -16,9 +16,11 @@ Comming soon:
 
 [DayZPack.zip](https://mega.nz/#!LxEEBbiD!wxj0u9Xo_VXU9mjj1Ut0ft89gJW-VgSfIMExCbzanCs) (over 1.200 50x50 dayz-themed tiles).
 
-## Samples(Using MegaPack)
+## Samples
 
-**Guerrero, biggest brazillian team's striker.**
+###Using MegaPack
+
+**Guerrero, Flamengo's striker.**
 <p align="center">
   <img src="http://www.sportv4.com/wp-content/uploads/2016/03/1158.jpg" width="400"/>
   <img src="http://i.imgur.com/uRk5bga.jpg" width="400"/>
