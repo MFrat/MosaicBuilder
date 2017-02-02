@@ -11,5 +11,5 @@ Using 50x50 image tiles and ImagePack tiles library.
 
 <p align="center">
   <img src="http://i.imgur.com/u73kIO9.jpg" width="400"/>
-  <img src="http://i.imgur.com/u73kIO9.jpg" width="400"/>
+  <img src="http://i.imgur.com/24mQvsF.png" width="400"/>
 </p>
