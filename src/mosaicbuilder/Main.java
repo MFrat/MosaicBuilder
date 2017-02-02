@@ -34,20 +34,18 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, InterruptedException {
-       //String tilePath = "D:\\Arquivos\\Downloads\\mega image pack - Copia";
-       String tilePath = "D:\\Arquivos\\Pictures\\dayz_pack_50x50";
-       String inputImagePath = "D:\\Arquivos\\Pictures\\teste50.jpg";
-       final String caminhoFinal = "D:\\Arquivos\\Pictures\\mosaico\\mosaicoDayZ5000.png";
+       String tilePath = "D:\\Arquivos\\Downloads\\mega image pack - Copia";
+       //String tilePath = "D:\\Arquivos\\Pictures\\dayz_pack_50x50";
+       String inputImagePath = "D:\\Arquivos\\Pictures\\1158.jpg";
+       final String caminhoFinal = "D:\\Arquivos\\Pictures\\mosaico\\mosaicoGuerrero.png";
         
-        MosaicBuilder mosaicBuilder = new MosaicBuilder(tilePath, inputImagePath, 50);
-        
-        mosaicBuilder.setListener(new MosaicBuilder.MosaicBuilderListener() {
+        MosaicBuilder.MosaicBuilderListener listener = new MosaicBuilder.MosaicBuilderListener() {
            @Override
            public void onMosaicFinished(BufferedImage img) {
                try {
                    ImageIO.write(img, "png", new File(caminhoFinal));
                } catch (IOException ex) {
-                   Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                   System.out.println("File not found.");
                }
            }
 
@@ -68,7 +66,9 @@ public class Main {
                         break;
                }
            }
-       });
+       };
+        
+        MosaicBuilder mosaicBuilder = new MosaicBuilder(tilePath, inputImagePath, 50, listener);
         
         mosaicBuilder.build();
     }

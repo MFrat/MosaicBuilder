@@ -13,76 +13,63 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Max
  */
 public class MosaicBuilder {
-    /**
-     * Callback interface
-     */
+    
     private MosaicBuilderListener listener;
     
-    /**
-     * 
-     */
-    private InputImage inputImage;
-    private OutputImage outputImage;
-    
-    /**
-     * Path for input image and tile folder.
-     */
-    private final String inputImagePath;
+    private final InputImage inputImage;
+    private final OutputImage outputImage;
     private final String tileFolderPath;
+    private final List<Tile> tiles;
+    private List<Tile> lastUsedTiles;
     
-    /**
-     * List with tile instances.
-     */
-    private List<Tile> tiles;
-    
-    /**
-     * Tile dimension (e.g 50x50)
-     */
-    private final int tileDimen;
-    
-    /**
-     * Aux variable for avoiding same tile being choose in sequence.
-     */
-    private final List<Tile> lastUsedTiles;
-    
-    /**
-     * Progress Status static constants
-     */
     public static final int READING_INPUT_IMAGE_INTO_MEMORY = 0;
     public static final int READING_TILES_INTO_MEMORY = 1;
     public static final int SELECTING_TILES = 2;
     public static final int BUILDING_OUTPUT_IMAGE = 3;
     
-    public MosaicBuilder(String tileFolderPath, String inputImagePath, int tileDimen) throws IOException, InterruptedException{    
-        this.tileFolderPath = tileFolderPath;      
+    public MosaicBuilder(String tileFolderPath, String inputImagePath, int tileDimen) throws IOException, InterruptedException{
+        this.inputImage = new InputImage(inputImagePath);
+        this.outputImage = new OutputImage(inputImage.width * tileDimen, inputImage.height * tileDimen);        
+        this.tileFolderPath = tileFolderPath;       
+        //this.tiles = Tile.getTiles(tileFolderPath);
         this.tiles = Tile.getTiles2(tileFolderPath);
         this.lastUsedTiles = new ArrayList<>();
-        this.tileDimen = tileDimen;
-        this.inputImagePath = inputImagePath;
     }
-
-    public void build() throws IOException, InterruptedException{
+    
+    public MosaicBuilder(String tileFolderPath, String inputImagePath, int tileDimen, MosaicBuilderListener listener) throws IOException, InterruptedException{
+        this.listener = listener;
+        
         if(listener != null){
             listener.onProgressChanged(READING_INPUT_IMAGE_INTO_MEMORY);
         }
         this.inputImage = new InputImage(inputImagePath);
         
-        this.outputImage = new OutputImage(inputImage.width * tileDimen, inputImage.height * tileDimen);
+        this.outputImage = new OutputImage(inputImage.width * tileDimen, inputImage.height * tileDimen);        
+        this.tileFolderPath = tileFolderPath;     
         
         if(listener != null){
             listener.onProgressChanged(READING_TILES_INTO_MEMORY);
         }
-        this.tiles = Tile.getTiles2(tileFolderPath);
-
+        this.tiles = Tile.getTiles(tileFolderPath);
+        //this.tiles = Tile.getTiles2(tileFolderPath);
+        
+        this.lastUsedTiles = new ArrayList<>();
+    }
+    
+    
+    public void build(){
         if(listener != null){
             listener.onProgressChanged(SELECTING_TILES);
         }
+        
         for(int i = 0; i < inputImage.getWidth(); i++){
             for(int j = 0; j < inputImage.getHeight(); j++){
                 Color inputImgPxColor = inputImage.getPixelColor(i, j);
@@ -94,6 +81,7 @@ public class MosaicBuilder {
         if(listener != null){
             listener.onProgressChanged(BUILDING_OUTPUT_IMAGE);
         }
+        
         outputImage.buildImage();
         
         if(listener != null){
@@ -101,11 +89,6 @@ public class MosaicBuilder {
         }
     }
     
-    /**
-     * Choose best tile for a given pixel color.
-     * @param pixelColor pixel color.
-     * @return Tile instance.
-     */
     private Tile chooseBestTile(Color pixelColor){
         Tile bestTile = tiles.get(0);
         
@@ -124,13 +107,6 @@ public class MosaicBuilder {
         return bestTile;
     }
     
-    /**
-     * Compare tow tiles with a pixel color.
-     * @param pixelColor pixel color
-     * @param tile1 Tile1
-     * @param tile2 Tile2
-     * @return The tile with the closest avarege color compared to the pixelColor.
-     */
     private Tile compareTile(Color pixelColor, Tile tile1, Tile tile2){
         int difTile1 = difColor(pixelColor, tile1.getAvarageColor());
         int difTile2 = difColor(pixelColor, tile2.getAvarageColor());
@@ -138,12 +114,6 @@ public class MosaicBuilder {
         return difTile1 < difTile2? tile1 : tile2;
     }
     
-    /**
-     * Calculates de difference between two colors.
-     * @param color1 Color1.
-     * @param color2 Color2.
-     * @return integer (>=0) representing the difference.
-     */
     private int difColor(Color color1, Color color2){
         int deltaR = (int) Math.pow(color1.getRed() - color2.getRed(), 2);
         int deltaG = (int) Math.pow(color1.getGreen() - color2.getGreen(), 2);
@@ -152,9 +122,6 @@ public class MosaicBuilder {
         return (int) Math.sqrt((deltaR)*2 + (deltaG)*4 + (deltaB)*3);
     }
     
-    /**
-     * Callback interface.
-     */
     public interface MosaicBuilderListener{
         public void onMosaicFinished(BufferedImage img);
         public void onProgressChanged(int status);
