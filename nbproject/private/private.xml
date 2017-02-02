@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Arquivos/Documents/GitHub/MosaicBuilder/src/thread/ThreadTile.java</file>
             <file>file:/D:/Arquivos/Documents/GitHub/MosaicBuilder/src/domain/Tile.java</file>
-            <file>file:/D:/Arquivos/Documents/GitHub/MosaicBuilder/src/mosaicbuilder/MosaicBuilder.java</file>
             <file>file:/D:/Arquivos/Documents/GitHub/MosaicBuilder/src/domain/OutputImage.java</file>
             <file>file:/D:/Arquivos/Documents/GitHub/MosaicBuilder/src/domain/Image.java</file>
             <file>file:/D:/Arquivos/Documents/GitHub/MosaicBuilder/src/logic/MosaicBuilder.java</file>
+            <file>file:/D:/Arquivos/Documents/GitHub/MosaicBuilder/src/mosaicbuilder/Main.java</file>
             <file>file:/D:/Arquivos/Documents/GitHub/MosaicBuilder/src/domain/InputImage.java</file>
         </group>
     </open-files>

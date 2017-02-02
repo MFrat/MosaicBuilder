@@ -5,9 +5,11 @@
  */
 package domain;
 
+import domain.Tile.Position;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -15,26 +17,43 @@ import java.io.IOException;
  */
 public class OutputImage extends Image {
     
-    private String fileName;
+    private final Tile[][] tileMatrix;
     
-    public OutputImage(String imagePath, int width, int height) throws IOException {
-        super(imagePath, width, height);
+    public OutputImage(int width, int height) throws IOException {
+        super(width, height);
         
-    }
-    
-    public void setFileName(String fileName){
-        this.fileName = fileName;
-    }
-    
-    public String getFileName(){
-        return fileName;
+        tileMatrix = new Tile[width/50][height/50];
     }
     
     public int getTotalPixel(){
         return width * height;
     }
     
-    public void setPixelColor(int i, int j, Color color){
-        img.setRGB(j, j, color.getRGB());
+    private void drawTile(Tile tile, int x, int y){
+        int x0 = x * 50;
+        int y0 = y * 50;
+        
+        for(int i = x0, k = 0; i < x0 + 50; i++, k++){
+            for(int j = y0, l = 0; j < y0 + 50; j++, l++){
+                setPixelColor(i, j, tile.getPixelColor(k, l));
+            }
+        }
+    }
+    
+    public void buildImage(){
+        for(int i = 0; i < width/50; i++){
+            for(int j = 0; j < height/50; j++){
+                Tile tile = tileMatrix[i][j];
+                drawTile(tile, i, j);
+            }
+        }
+    }
+    
+    private void setPixelColor(int i, int j, Color color){
+        img.setRGB(i, j, color.getRGB());
+    }
+    
+    public void setTile(Tile tile, int i, int j){
+        tileMatrix[i][j] = tile;
     }
 }
