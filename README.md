@@ -2,7 +2,7 @@
 
 Mosaic made of square image tiles. Each pixel of the input image is replaced by a tile.
 
-#Samples
+##Samples
 Using 50x50 image tiles and ImagePack tiles library.
 
 Guerrero, biggest brazillian team's striker. 
@@ -22,3 +22,44 @@ Computer Science Institute - UFF
   <img src="http://i.imgur.com/cvmxYvL.jpg" width="400"/>
   <img src="http://i.imgur.com/d8lBZ7V.jpg" width="400"/>
 </p>
+
+# Usage
+
+        `String tilePath = "D:\\SomeFolder\\my_pack_50x50";
+         String inputImagePath = "D:\\SomeFolder\\inputImage.jpg";
+         final String finalPath = "D:\\SomeFolder\\outPutImage.png";
+         int tileDimension = 50;
+        
+        MosaicBuilder mosaicBuilder = new MosaicBuilder(tilePath, inputImagePath, tileDimension);
+
+        mosaicBuilder.setListener(new MosaicBuilder.MosaicBuilderListener() {
+           @Override
+           public void onMosaicFinished(BufferedImage img) {
+               try {
+                   ImageIO.write(img, "png", new File(finalPath));
+               } catch (IOException ex) {
+                   //TODO
+                   //Warn user, etc...
+               }
+           }
+
+           @Override
+           public void onProgressChanged(int status) {
+               switch (status){
+                    case MosaicBuilder.BUILDING_OUTPUT_IMAGE:
+                        System.out.println("Building final image...");
+                        break;
+                     case MosaicBuilder.READING_INPUT_IMAGE_INTO_MEMORY:
+                        System.out.println("Reading input image into memory...");
+                        break;
+                     case MosaicBuilder.READING_TILES_INTO_MEMORY:
+                        System.out.println("Reading tiles into memory...");
+                        break;
+                     case MosaicBuilder.SELECTING_TILES:
+                        System.out.println("Selecting best tiles for each input image's pixel...");
+                        break;
+               }
+           }
+       });
+        
+        mosaicBuilder.build();`
