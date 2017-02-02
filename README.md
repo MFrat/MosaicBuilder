@@ -25,7 +25,8 @@ Computer Science Institute - UFF
 
 # Usage
 
-        ```String tilePath = "D:\\SomeFolder\\my_pack_50x50";
+        ```java
+        String tilePath = "D:\\SomeFolder\\my_pack_50x50";
          String inputImagePath = "D:\\SomeFolder\\inputImage.jpg";
          final String finalPath = "D:\\SomeFolder\\outPutImage.png";
          int tileDimension = 50;
@@ -62,4 +63,5 @@ Computer Science Institute - UFF
            }
        });
         
-        mosaicBuilder.build();```
+        mosaicBuilder.build();
+        ```
