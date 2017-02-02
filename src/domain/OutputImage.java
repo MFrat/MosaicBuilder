@@ -29,18 +29,6 @@ public class OutputImage extends Image {
         return width * height;
     }
     
-    private void drawTile(Tile tile, List<Position> positions){
-        int counter = 0;
-        for(int i = 0; i < tile.width; i++){
-            for(int j = 0; j < tile.height; j++){
-                Color pxTileColor = tile.getPixelColor(i, j);
-                Position pos = positions.get(counter);
-                setPixelColor(pos.getX(), pos.getY(), pxTileColor);
-                counter++;
-            }
-        }
-    }
-    
     private void drawTile(Tile tile, int x, int y){
         int x0 = x * 50;
         int y0 = y * 50;
