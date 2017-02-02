@@ -2,22 +2,27 @@
 
 Mosaic made of square image tiles. Each pixel of the input image is replaced by a tile.
 
-##Samples
-Using 50x50 image tiles and ImagePack tiles library.
+### Packs
 
-Guerrero, biggest brazillian team's striker. 
+[MegaPack.zip](https://www.google.com) (over 12.000 50x50 tiles).
+
+[DayZPack.zip](https://www.google.com) (over 1.200 50x50 dayz-themed tiles).
+
+## Samples(Using MegaPack)
+
+**Guerrero, biggest brazillian team's striker.**
 <p align="center">
   <img src="http://www.sportv4.com/wp-content/uploads/2016/03/1158.jpg" width="400"/>
   <img src="http://i.imgur.com/uRk5bga.jpg" width="400"/>
 </p>
 
-DayZ's most famous image.
+**DayZ's most famous image.**
 <p align="center">
   <img src="http://i.imgur.com/u73kIO9.jpg" width="400"/>
   <img src="http://i.imgur.com/v2crLWJ.png" width="400"/>
 </p>
 
-Computer Science Institute - UFF
+**Computer Science Institute - UFF**
 <p align="center">
   <img src="http://i.imgur.com/cvmxYvL.jpg" width="400"/>
   <img src="http://i.imgur.com/d8lBZ7V.jpg" width="400"/>
@@ -35,11 +40,12 @@ MosaicBuilder mosaicBuilder = new MosaicBuilder(tilePath, inputImagePath, tileDi
 
 ```tileDimen``` Dimension of the tile. (e.g 50x50, 60x60, 40x40, ...).
 
+
 ##Listener
 ```java
 public interface MosaicBuilderListener{
-        public void onMosaicFinished(BufferedImage img);
-        public void onProgressChanged(int status);
+      public void onMosaicFinished(BufferedImage img);
+      public void onProgressChanged(int status);
 }
 ```
 
@@ -47,7 +53,8 @@ public interface MosaicBuilderListener{
 
 `onProgressChanged(int status);` is called when the progress changes (e.g, init -> loading inputImage to memory).
 
-##Progress Status static constants
+
+## Progress Status static constants
 ```java
 public static final int READING_INPUT_IMAGE_INTO_MEMORY;
 public static final int READING_TILES_INTO_MEMORY;
@@ -55,7 +62,7 @@ public static final int SELECTING_TILES;
 public static final int BUILDING_OUTPUT_IMAGE;
 ```
 
-##Example
+## Example
 ```java
 String tilePath = "D:\\SomeFolder\\my_pack_50x50";
 String inputImagePath = "D:\\SomeFolder\\inputImage.jpg";
