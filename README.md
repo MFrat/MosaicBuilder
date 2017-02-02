@@ -8,6 +8,7 @@ Comming soon:
 - Full multi-thread processing.
 - DeltaE color difference algorithm.
 - Better tile placement algorithm, to avoid sequence repetition.
+- Graphic interface implementation.
 
 ### Packs
 
