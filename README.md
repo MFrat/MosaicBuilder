@@ -40,7 +40,7 @@ Comming soon:
   <img src="http://i.imgur.com/d8lBZ7V.jpg" width="400"/>
 </p>
 
-###Using TW3_pack
+###Using TW3Pack
 **Geralt de Rivia**
 <p align="center">
   <img src="http://i.imgur.com/Jh5K3os.jpg" width="400"/>
@@ -87,6 +87,12 @@ public static final int SELECTING_TILES;
 public static final int BUILDING_OUTPUT_IMAGE;
 ```
 
+## Exceptions
+```java
+public class InvalidInputImagePath
+public class InvalidOutputImagePath
+public class InvalidTileFolderPath
+```
 ## Example
 ```java
 String tilePath = "D:\\SomeFolder\\my_pack_50x50";
@@ -126,7 +132,15 @@ mosaicBuilder.setListener(new MosaicBuilder.MosaicBuilderListener() {
    }
 });
 
-mosaicBuilder.build();
+        try{
+            mosaicBuilder.build();
+        }catch(InvalidInputImagePath e){
+            //Show to user that somenthing gone wrong.
+            System.out.println("Invalid input path: " + inputImagePath);
+        }catch(InvalidTileFolderPath e){
+            //Show to user that somenthing gone wrong.
+            System.out.println("Invalid tile folder path: " + tilePath);
+        }
 ```
 
 ## Developed by
