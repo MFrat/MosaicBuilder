@@ -2,6 +2,9 @@
 
 Mosaic made of square image tiles. Each pixel of the input image is replaced by a tile.
 
+Add the .jar file in your project.
+[MosaicBuilder.jar](https://mega.nz/#!S5sQSbSK!SiKL23MujVM2bmq9kxz8hL8Jlc5Kq-IniiW9ThFknyY) (Library JAR file.).
+
 Library under development!
 
 Comming soon:
