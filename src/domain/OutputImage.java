@@ -9,6 +9,7 @@ import domain.Tile.Position;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class OutputImage extends Image {
     
     private final Tile[][] tileMatrix;
     
-    public OutputImage(int width, int height) throws IOException {
+    public OutputImage(int width, int height){
         super(width, height);
         
         tileMatrix = new Tile[width/50][height/50];
@@ -47,6 +48,41 @@ public class OutputImage extends Image {
                 drawTile(tile, i, j);
             }
         }
+    }
+    
+    public List<Tile> getNearTiles(int level, int i, int j){
+        List<Tile> left = new ArrayList<>();
+        List<Tile> top = new ArrayList<>();
+        
+        //Left
+        for(int k = j, l = 0; l < level; k--, l++){
+            if(validPosition(k, i)){
+                try{
+                    left.add(tileMatrix[k][i]);
+                }catch(Exception e){
+                    //caguei.
+                }
+            }
+        }
+        
+        //top
+        for(int k = i,  l = 0; l < level; k++, l++){
+            if(validPosition(k, j)){
+                try{
+                    top.add(tileMatrix[k][j]);
+                }catch(Exception e){
+                    //caguei.
+                }
+            }
+        }
+        
+        left.addAll(top);
+        
+        return left;
+    }
+    
+    private boolean validPosition(int i, int j){
+        return !(i < 0 || i >= height/50 || i >= width/50) || (j < 0 || j >= width/50 || j >= height/50);
     }
     
     private void setPixelColor(int i, int j, Color color){

@@ -5,24 +5,15 @@
  */
 package mosaicbuilder;
 
-import domain.Tile;
+import expcetion.InvalidInputImagePath;
+import expcetion.InvalidTileFolderPath;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import logic.MosaicBuilder;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 /**
  *
@@ -35,9 +26,10 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, InterruptedException {
        //String tilePath = "D:\\Arquivos\\Downloads\\mega image pack - Copia";
-       String tilePath = "D:\\Arquivos\\Pictures\\dayz_pack_50x50";
-       String inputImagePath = "D:\\Arquivos\\Pictures\\teste50.jpg";
-       final String caminhoFinal = "D:\\Arquivos\\Pictures\\mosaico\\mosaicoDayZ5000.png";
+       //String tilePath = "D:\\Arquivos\\Pictures\\dayz_pack_50x50";
+       String tilePath = "D:\\Arquivos\\Pictures\\50x50_packs\\Bohemia_pack_50x50";
+       String inputImagePath = "D:\\Arquivos\\Pictures\\teste20001111.jpg";
+       final String caminhoFinal = "D:\\Arquivos\\Pictures\\mosaico\\teste2001.png";
         
         MosaicBuilder mosaicBuilder = new MosaicBuilder(tilePath, inputImagePath, 50);
         
@@ -47,7 +39,7 @@ public class Main {
                try {
                    ImageIO.write(img, "png", new File(caminhoFinal));
                } catch (IOException ex) {
-                   Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                   System.out.println("Invalid output image path: " + caminhoFinal);
                }
            }
 
@@ -70,6 +62,12 @@ public class Main {
            }
        });
         
-        mosaicBuilder.build();
+        try{
+            mosaicBuilder.build();
+        }catch(InvalidInputImagePath e){
+            System.out.println("Invalid input path: " + inputImagePath);
+        }catch(InvalidTileFolderPath e){
+            System.out.println("Invalid tile folder path: " + tilePath);
+        }
     }
 }
