@@ -8,13 +8,15 @@ Comming soon:
 - Full multi-thread processing.
 - DeltaE color difference algorithm.
 - Better tile placement algorithm, to avoid sequencial repetition.
-- Graphic interface implementation.
+- Graphic interface implementation (for non-programmer users).
 
 ### Packs
 
 [MegaPack.zip](https://mega.nz/#!XpsWDKpa!5P96H4Wd_7unRwlrfg0izY0eXIpAVMXnWpXl56ePB3I) (over 12.000 50x50 tiles).
 
 [DayZPack.zip](https://mega.nz/#!LxEEBbiD!wxj0u9Xo_VXU9mjj1Ut0ft89gJW-VgSfIMExCbzanCs) (over 1.200 50x50 dayz-themed tiles).
+
+[TW3Pack.zip](https://mega.nz/#!r1t3VQjJ!QFCM1ZGzf5fZjwX01JoFnliglo32dgiCCOAMdeD2EDM) (over 1.200 50x50 the-witcher-3-themed tiles).
 
 ## Samples
 
@@ -38,6 +40,13 @@ Comming soon:
   <img src="http://i.imgur.com/d8lBZ7V.jpg" width="400"/>
 </p>
 
+###Using TW3_pack
+**Geralt de Rivia**
+<p align="center">
+  <img src="http://i.imgur.com/Jh5K3os.jpg" width="400"/>
+  <img src="http://i.imgur.com/Hq4YftH.jpg" width="400"/>
+</p>
+
 # Usage
 
 ##Constructor
@@ -59,9 +68,15 @@ public interface MosaicBuilderListener{
 }
 ```
 
-`onMosaicFinished(BufferedImage img);` is called when final image is done.
+```java
+public void onMosaicFinished(BufferedImage img);
+``` 
+is called when final image is done.
 
-`onProgressChanged(int status);` is called when the progress changes (e.g, init -> loading inputImage to memory).
+```java 
+public void onProgressChanged(int status);
+``` 
+is called when the progress changes (e.g, init -> loading inputImage to memory).
 
 
 ## Progress Status static constants
