@@ -5,6 +5,10 @@
  */
 package domain;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+import expcetion.InvalidInputImagePath;
+import expcetion.InvalidOutputImagePath;
+import expcetion.InvalidTileFolderPath;
 import java.awt.Color;
 import java.io.File;
 
@@ -35,24 +39,23 @@ public abstract class Image {
      */
     protected Color[][] pixelMatrix;
     
-    public Image(String imagePath) throws IOException{
+    public Image(String imagePath){
         file = new File(imagePath);
         
-        img = ImageIO.read(file);
+        try {
+            img = ImageIO.read(file);
+        } catch (IOException ex) {
+            if(this instanceof InputImage){
+                throw new InvalidInputImagePath("Invalid input image path: " + imagePath);
+            }else{
+                throw new InvalidOutputImagePath("Invalid tile image path: " + imagePath);
+            }
+        }
         
         width = img.getWidth();
         height = img.getHeight();
         
         pixelMatrix = new Color[width][height];
-    }
-    
-    public Image(String imagePath, int width, int height){
-        file = new File(imagePath);
-        
-        this.width = width;
-        this.height = height;
-        
-        img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     }
     
     public Image(int width, int height){

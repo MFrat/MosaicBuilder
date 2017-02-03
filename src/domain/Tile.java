@@ -5,6 +5,7 @@
  */
 package domain;
 
+import expcetion.InvalidTileFolderPath;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,13 +29,12 @@ public class Tile extends Image {
     private int usedTimes;
     private boolean isEnabled;
     
-    public Tile(String imagePath) throws IOException {
+    public Tile(String imagePath) {
         super(imagePath);
-        build(img);
         usedTimes = 0;
     }
     
-    private void build(BufferedImage img){
+    public void build(){
         int r = 0;
         int g = 0;
         int b = 0;
@@ -74,10 +74,6 @@ public class Tile extends Image {
     public static List<Tile> getTiles(String path) throws IOException{
         File folder = new File(path);
         
-        if(!folder.exists()){
-            throw new IllegalArgumentException("Invalid tile's folder path: " + path);
-        }
-        
         File[] files = folder.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
@@ -110,7 +106,7 @@ public class Tile extends Image {
         File folder = new File(path);
         
         if(!folder.exists()){
-            throw new IllegalArgumentException("Invalid tile's folder path: " + path);
+            throw new InvalidTileFolderPath("Invalid tile folder path: " + path);
         }
         
         File[] files = folder.listFiles(new FilenameFilter() {

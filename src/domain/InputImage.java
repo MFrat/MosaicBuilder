@@ -5,8 +5,10 @@
  */
 package domain;
 
+import expcetion.*;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -15,12 +17,11 @@ import java.io.IOException;
  */
 public class InputImage extends Image {
     
-    public InputImage(String imagePath) throws IOException {
+    public InputImage(String imagePath){
         super(imagePath);
-        build(img);
     }
     
-    protected void build(BufferedImage img){
+    public void build(){
        for(int i = 0; i < this.width; i++){
            for(int j = 0; j < this.height; j++){
                pixelMatrix[i][j] = new Color(img.getRGB(i, j));

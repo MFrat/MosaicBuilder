@@ -55,8 +55,7 @@ public class MosaicBuilder {
     public static final int BUILDING_OUTPUT_IMAGE = 3;
     
     public MosaicBuilder(String tileFolderPath, String inputImagePath, int tileDimen) throws IOException, InterruptedException{    
-        this.tileFolderPath = tileFolderPath;      
-        this.tiles = Tile.getTiles2(tileFolderPath);
+        this.tileFolderPath = tileFolderPath;
         this.lastUsedTiles = new ArrayList<>();
         this.tileDimen = tileDimen;
         this.inputImagePath = inputImagePath;
@@ -67,6 +66,7 @@ public class MosaicBuilder {
             listener.onProgressChanged(READING_INPUT_IMAGE_INTO_MEMORY);
         }
         this.inputImage = new InputImage(inputImagePath);
+        this.inputImage.build();
         
         this.outputImage = new OutputImage(inputImage.width * tileDimen, inputImage.height * tileDimen);
         
@@ -81,7 +81,7 @@ public class MosaicBuilder {
         for(int i = 0; i < inputImage.getWidth(); i++){
             for(int j = 0; j < inputImage.getHeight(); j++){
                 Color inputImgPxColor = inputImage.getPixelColor(i, j);
-                Tile bestTile = chooseBestTile(inputImgPxColor);
+                Tile bestTile = chooseBestTile(inputImgPxColor, i, j);
                 outputImage.setTile(bestTile, i, j);
             }
         }
@@ -101,7 +101,7 @@ public class MosaicBuilder {
      * @param pixelColor pixel color.
      * @return Tile instance.
      */
-    private Tile chooseBestTile(Color pixelColor){
+    private Tile chooseBestTile(Color pixelColor, int i, int j){
         Tile bestTile = tiles.get(0);
         
         for(Tile tile : tiles){
@@ -146,7 +146,7 @@ public class MosaicBuilder {
         
         return (int) Math.sqrt((deltaR)*2 + (deltaG)*4 + (deltaB)*3);
     }
-    
+
     /**
      * Callback interface.
      */

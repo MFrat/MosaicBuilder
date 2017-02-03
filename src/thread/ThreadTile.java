@@ -70,6 +70,7 @@ public class ThreadTile extends Thread{
                 }
 
                 Tile tile = new Tile(fileArray[i].getAbsolutePath());
+                tile.build();
 
                 tileArray[j] = tile;
             }
