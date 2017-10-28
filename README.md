@@ -24,7 +24,7 @@ Comming soon:
 
 ## Samples
 
-###Using MegaPack
+### Using MegaPack
 
 **Guerrero, Flamengo's striker.**
 <p align="center">
@@ -44,7 +44,7 @@ Comming soon:
   <img src="http://i.imgur.com/d8lBZ7V.jpg" width="400"/>
 </p>
 
-###Using TW3Pack
+### Using TW3Pack
 **Geralt de Rivia**
 <p align="center">
   <img src="http://i.imgur.com/Jh5K3os.jpg" width="400"/>
@@ -64,7 +64,7 @@ MosaicBuilder mosaicBuilder = new MosaicBuilder(tilePath, inputImagePath, tileDi
 ```tileDimen``` Dimension of the tile. (e.g 50x50, 60x60, 40x40, ...).
 
 
-##Listener(Callback interface)
+## Listener(Callback interface)
 ```java
 public interface MosaicBuilderListener{
       public void onMosaicFinished(BufferedImage img);
