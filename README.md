@@ -53,7 +53,7 @@ Comming soon:
 
 # Usage
 
-##Constructor
+## Constructor
 ```java
 MosaicBuilder mosaicBuilder = new MosaicBuilder(tilePath, inputImagePath, tileDimension);
 ```
@@ -148,7 +148,4 @@ mosaicBuilder.setListener(new MosaicBuilder.MosaicBuilderListener() {
 ```
 
 ## Developed by
-
 **Max Fratane**
-
-[Facebook](https://www.facebook.com/max.fratane)
