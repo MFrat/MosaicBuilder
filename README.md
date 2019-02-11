@@ -2,14 +2,6 @@
 
 Mosaic made of square image tiles. Each pixel of the input image is replaced by a tile.
 
-Library under development!
-
-Comming soon:
-- Full multi-thread processing.
-- DeltaE color difference algorithm.
-- Better tile placement algorithm, to avoid sequence repetition.
-- Graphic interface implementation.
-
 ### Packs
 
 [MegaPack.zip](https://mega.nz/#!XpsWDKpa!5P96H4Wd_7unRwlrfg0izY0eXIpAVMXnWpXl56ePB3I) (over 12.000 50x50 tiles).
